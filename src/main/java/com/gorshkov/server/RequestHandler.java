@@ -15,13 +15,13 @@ public class RequestHandler {
         this.contentReader = contentReader;
     }
 
-    public void handle() throws IOException, NoSuchHttpCodeException {
+    public void handle() throws IOException, NoSuchHttpStatusException {
         RequestParser requestParser = new RequestParser();
         Request request = requestParser.parseRequest(reader);
 
         String uri = request.getUri();
 
-        ContentReader contentReader = new ContentReader("src/main/resources/");
+        ContentReader contentReader = new ContentReader("src/main/resources/"); //TODO Is webAppPath redundent here?
         String content = contentReader.readContent(uri);
 
 

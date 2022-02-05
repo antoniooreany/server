@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class Starter {
     public static void main(String[] args) throws IOException {
-        Server server = new Server(3000, new ContentReader("src/main/resources/"));
+        Server server = new Server(3000, new ContentReader("src/main/resources/")); //TODO Is webAppPath redundent here?
         server.start();
     }
 }

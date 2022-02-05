@@ -22,7 +22,7 @@ public enum HttpStatus {
         return message;
     }
 
-    public static HttpStatus getHttpStatus(String message) throws NoSuchHttpCodeException {
+    public static HttpStatus getHttpStatus(String message) throws NoSuchHttpStatusException {
         if ("OK".equals(message)) {
             return OK;
         } else if ("NOT_FOUND".equals(message)) {
@@ -32,6 +32,6 @@ public enum HttpStatus {
         } else if ("BAD_REQUEST".equals(message)) {
             return BAD_REQUEST;
         }
-        throw new NoSuchHttpCodeException("The code " + message + " does not exist.");
+        throw new NoSuchHttpStatusException("The code " + message + " does not exist.");
     }
 }
