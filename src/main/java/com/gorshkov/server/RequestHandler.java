@@ -3,21 +3,66 @@ package com.gorshkov.server;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
-public record RequestHandler(BufferedReader reader, BufferedWriter writer) {
+public final class RequestHandler {
+    private final BufferedReader reader;
+    private final BufferedWriter writer;
+    private ContentReader contentReader;
 
-    public void handle(String webAppPath) throws IOException, NoSuchHttpStatusException {
+    public RequestHandler(BufferedReader reader, BufferedWriter writer, ContentReader contentReader) {
+        this.reader = reader;
+        this.writer = writer;
+        this.contentReader = contentReader;
+    }
+
+    public void handle() throws IOException, NoSuchHttpStatusException {
         RequestParser requestParser = new RequestParser();
         Request request = requestParser.parseRequest(reader);
 
         String uri = request.getUri();
 
-        ContentReader contentReader = new ContentReader(webAppPath);
+//        ContentReader contentReader = new ContentReader(webAppPath);
         String content = contentReader.readContent(uri);
 
         Map<String, String[]> headers = new HashMap<>();
         ResponseWriter responseWriter = new ResponseWriter();
         Response response = new Response(content, HttpStatus.OK, headers);
         responseWriter.writeResponse(writer, response);
+    }
+
+    public BufferedReader reader() {
+        return reader;
+    }
+
+    public BufferedWriter writer() {
+        return writer;
+    }
+
+    public ContentReader contentReader() {
+        return contentReader;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (obj == null || obj.getClass() != this.getClass()) return false;
+        var that = (RequestHandler) obj;
+        return Objects.equals(this.reader, that.reader) &&
+                Objects.equals(this.writer, that.writer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(reader, writer);
+    }
+
+    @Override
+    public String toString() {
+        return "RequestHandler{" +
+                "reader=" + reader +
+                ", writer=" + writer +
+                ", contentReader=" + contentReader +
+                '}';
     }
 }

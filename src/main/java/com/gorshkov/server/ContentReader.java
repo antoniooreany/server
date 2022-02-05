@@ -6,9 +6,9 @@ public record ContentReader(String webAppPath) {
 
     public String readContent(String uri) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(webAppPath + uri));
-        String line;
+        String line = "";
         StringBuilder result = new StringBuilder();
-        while (!(line = reader.readLine()).isEmpty()) {
+        while (reader.readLine() != null /*|| !(line = reader.readLine()).isEmpty()*/) {
             result.append(line);
         }
         return result.toString();
