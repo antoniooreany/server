@@ -23,8 +23,8 @@ public final class RequestHandler {
 
         RequestParser requestParser = new RequestParser();
         Request request = requestParser.parseRequest(reader);
-//        while (true) {
         String uri = request.getUri();
+        System.out.println(uri + " applied.");
 
         String content = contentReader.readContent(uri);
 
@@ -33,7 +33,6 @@ public final class RequestHandler {
         ResponseWriter responseWriter = new ResponseWriter();
         Response response = new Response(content, HttpStatus.OK, headers);
         responseWriter.writeResponse(writer, response);
-//        }
     }
 
     @Override
