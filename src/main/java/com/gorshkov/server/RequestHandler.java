@@ -8,9 +8,10 @@ import java.util.Objects;
 public final class RequestHandler {
     private final BufferedReader reader;
     private final BufferedWriter writer;
-    private ContentReader contentReader;
+    private final ContentReader contentReader;
 
-    public RequestHandler(BufferedReader reader, BufferedWriter writer, ContentReader contentReader) {
+    public RequestHandler(BufferedReader reader, BufferedWriter writer,
+                          ContentReader contentReader) {
         this.reader = reader;
         this.writer = writer;
         this.contentReader = contentReader;
@@ -22,25 +23,12 @@ public final class RequestHandler {
 
         String uri = request.getUri();
 
-//        ContentReader contentReader = new ContentReader(webAppPath);
         String content = contentReader.readContent(uri);
 
         Map<String, String[]> headers = new HashMap<>();
         ResponseWriter responseWriter = new ResponseWriter();
         Response response = new Response(content, HttpStatus.OK, headers);
         responseWriter.writeResponse(writer, response);
-    }
-
-    public BufferedReader reader() {
-        return reader;
-    }
-
-    public BufferedWriter writer() {
-        return writer;
-    }
-
-    public ContentReader contentReader() {
-        return contentReader;
     }
 
     @Override
@@ -54,7 +42,7 @@ public final class RequestHandler {
 
     @Override
     public int hashCode() {
-        return Objects.hash(reader, writer);
+        return Objects.hash(reader, writer, contentReader);
     }
 
     @Override

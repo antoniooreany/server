@@ -16,7 +16,10 @@ public class ResponseWriter {
         writer.write(content);
     }
 
-    public void writeResponse(Writer writer, HttpStatus httpStatus) {
-
+    public void writeResponse(Writer writer, HttpStatus httpStatus) throws IOException {
+        writer.write("HTTP/1.1 ");
+        writer.write(httpStatus.getCode());
+        writer.write(" ");
+        writer.write(httpStatus.getMessage());
     }
 }
