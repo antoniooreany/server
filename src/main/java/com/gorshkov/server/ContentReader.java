@@ -12,10 +12,9 @@ public final class ContentReader {
 
     public String readContent(String uri) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(webAppPath + uri));
-        String line = "";
         StringBuilder result = new StringBuilder();
-        while (reader.readLine() != null /*|| !(line = reader.readLine()).isEmpty()*/) {
-            result.append(line);
+        while (reader.ready()/* != null*/ /*|| !(line = reader.readLine()).isEmpty()*/) {
+            result.append(reader.readLine());
         }
         return result.toString();
     }

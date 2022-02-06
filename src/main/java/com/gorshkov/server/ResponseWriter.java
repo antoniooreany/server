@@ -13,7 +13,9 @@ public class ResponseWriter {
         writer.write(" ");
         writer.write(response.getHttpStatus().getMessage());
         //TODO implement writing of headers
-        writer.write(content);
+        writer.write("\n\r");
+        writer.write("\n\r");
+        writer.write(content); //TODO Result is not seen in browser. Why?
     }
 
     public void writeResponse(Writer writer, HttpStatus httpStatus) throws IOException {
