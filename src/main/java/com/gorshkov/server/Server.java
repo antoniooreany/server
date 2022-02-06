@@ -17,12 +17,16 @@ public class Server {
     }
 
     public void start() throws IOException {
-        try (Socket socket = new ServerSocket(port).accept();
-             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));) {
-            ContentReader contentReader = new ContentReader(webAppPath);
-            RequestHandler handler = new RequestHandler(reader, writer, contentReader);
-            handler.handle();
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
+            while (true) {
+                try (Socket socket = serverSocket.accept();
+                     BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));) {
+                    ContentReader contentReader = new ContentReader(webAppPath);
+                    RequestHandler handler = new RequestHandler(reader, writer, contentReader);
+                    handler.handle();
+                }
+            }
         }
     }
 }

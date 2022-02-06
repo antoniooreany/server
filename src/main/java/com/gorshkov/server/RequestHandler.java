@@ -1,6 +1,8 @@
 package com.gorshkov.server;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -18,17 +20,20 @@ public final class RequestHandler {
     }
 
     public void handle() throws IOException, NoSuchHttpStatusException {
+
         RequestParser requestParser = new RequestParser();
         Request request = requestParser.parseRequest(reader);
-
+//        while (true) {
         String uri = request.getUri();
 
         String content = contentReader.readContent(uri);
 
         Map<String, String[]> headers = new HashMap<>();
+
         ResponseWriter responseWriter = new ResponseWriter();
         Response response = new Response(content, HttpStatus.OK, headers);
         responseWriter.writeResponse(writer, response);
+//        }
     }
 
     @Override

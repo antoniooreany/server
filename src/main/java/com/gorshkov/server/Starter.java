@@ -7,6 +7,6 @@ public class Starter {
         Server server = new Server();
         server.setPort(3000);
         server.setWebAppPath("src/main/resources");
-            server.start();
+        server.start(); // TODO How to apply /css/styles.css ?
     }
 }
