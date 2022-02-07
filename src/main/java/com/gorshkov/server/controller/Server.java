@@ -8,12 +8,9 @@ public class Server {
     private int port;
     private String webAppPath;
 
-    public void setWebAppPath(String webAppPath) {
-        this.webAppPath = webAppPath;
-    }
-
-    public void setPort(int port) {
+    public Server(int port, String webAppPath) {
         this.port = port;
+        this.webAppPath = webAppPath;
     }
 
     public void start() throws IOException {
