@@ -1,4 +1,6 @@
-package com.gorshkov.server;
+package com.gorshkov.server.model;
+
+import com.gorshkov.server.exception.NoSuchHttpStatusException;
 
 public enum HttpStatus {
     OK(200, "OK"),

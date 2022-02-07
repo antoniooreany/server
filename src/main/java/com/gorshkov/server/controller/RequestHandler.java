@@ -1,4 +1,9 @@
-package com.gorshkov.server;
+package com.gorshkov.server.controller;
+
+import com.gorshkov.server.exception.NoSuchHttpStatusException;
+import com.gorshkov.server.model.HttpStatus;
+import com.gorshkov.server.model.Request;
+import com.gorshkov.server.model.Response;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

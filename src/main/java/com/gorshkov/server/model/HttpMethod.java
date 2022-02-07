@@ -1,4 +1,6 @@
-package com.gorshkov.server;
+package com.gorshkov.server.model;
+
+import com.gorshkov.server.exception.NoSuchHttpMethodException;
 
 public enum HttpMethod {
     GET("GET"),

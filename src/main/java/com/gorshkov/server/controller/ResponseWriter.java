@@ -1,7 +1,9 @@
-package com.gorshkov.server;
+package com.gorshkov.server.controller;
+
+import com.gorshkov.server.model.HttpStatus;
+import com.gorshkov.server.model.Response;
 
 import java.io.IOException;
-import java.io.Reader;
 import java.io.Writer;
 
 public class ResponseWriter {

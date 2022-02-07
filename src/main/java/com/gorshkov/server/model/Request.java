@@ -1,4 +1,4 @@
-package com.gorshkov.server;
+package com.gorshkov.server.model;
 
 import java.util.Map;
 

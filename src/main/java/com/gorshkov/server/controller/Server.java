@@ -1,4 +1,4 @@
-package com.gorshkov.server;
+package com.gorshkov.server.controller;
 
 import java.io.*;
 import java.net.ServerSocket;

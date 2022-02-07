@@ -1,4 +1,7 @@
-package com.gorshkov.server;
+package com.gorshkov.server.controller;
+
+import com.gorshkov.server.model.HttpMethod;
+import com.gorshkov.server.model.Request;
 
 import java.io.BufferedReader;
 import java.io.IOException;

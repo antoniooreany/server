@@ -1,5 +1,7 @@
 package com.gorshkov.server;
 
+import com.gorshkov.server.controller.Server;
+
 import java.io.IOException;
 
 public class Starter {
